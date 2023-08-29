@@ -37,7 +37,11 @@ export class MediasService {
     return this.repository.update(id, updateMediaDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} media`;
+  async remove(id: number) {
+    const media = await this.repository.findOneWithPublications(id);
+    if (!media) throw new HttpException("Media not found", HttpStatus.NOT_FOUND);
+    if (media.Publication.length > 0) throw new HttpException("Cannot delete media in use", HttpStatus.FORBIDDEN);
+
+    return this.repository.remove(id);
   }
 }

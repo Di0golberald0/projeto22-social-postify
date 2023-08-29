@@ -35,6 +35,15 @@ export class MediasRepository {
     })
   }
 
+  findOneWithPublications(id: number) {
+    return this.prisma.media.findUnique({
+      where: { id },
+      include: {
+        Publication: true // join
+      }
+    })
+  }
+  
   update(id: number, updateMediaDto: UpdateMediaDto) {
     return this.prisma.media.update({
       where: { id },
