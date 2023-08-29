@@ -16,16 +16,25 @@ export class MediasService {
     return this.repository.create(createMediaDto);
   }
 
-  findAll() {
-    return `This action returns all medias`;
+  async findAll() {
+    return this.repository.findAll();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} media`;
+  async findOne(id: number) {
+    const media = await this.repository.findOne(id);
+    if (!media) throw new HttpException("Media not found", HttpStatus.NOT_FOUND);
+
+    return media;
   }
 
-  update(id: number, updateMediaDto: UpdateMediaDto) {
-    return `This action updates a #${id} media`;
+  async update(id: number, updateMediaDto: UpdateMediaDto) {
+    await this.findOne(id);
+
+    const { title, username } = updateMediaDto;
+    const media = await this.repository.findByTitleAndUsername(title, username);
+    if (media) throw new HttpException("Media with this info already exists", HttpStatus.CONFLICT);
+
+    return this.repository.update(id, updateMediaDto);
   }
 
   remove(id: number) {
