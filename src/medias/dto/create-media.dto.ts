@@ -8,4 +8,8 @@ export class CreateMediaDto {
     @IsString()
     @IsNotEmpty()
     username: string;
+    
+    constructor(params?: Partial<CreateMediaDto>) {
+      if (params) Object.assign(this, params);
+    }
 }
