@@ -8,4 +8,5 @@ import { MediasRepository } from './medias.repository';
   providers: [MediasService, MediasRepository],
   exports: [MediasService]
 })
+
 export class MediasModule { }

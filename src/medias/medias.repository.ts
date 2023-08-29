@@ -1,21 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { CreateMediaDto } from './dto/create-media.dto';
 import { UpdateMediaDto } from './dto/update-media.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class MediasRepository {
-  
+
   constructor(private readonly prisma: PrismaService) { }
 
   create(createMediaDto: CreateMediaDto) {
-    return this.prisma.media.create ({
+    return this.prisma.media.create({
       data: createMediaDto
     })
   }
 
   findAll() {
-    return this.prisma.media.findMany()
+    return this.prisma.media.findMany();
   }
 
   findOne(id: number) {
@@ -43,7 +43,7 @@ export class MediasRepository {
       }
     })
   }
-  
+
   update(id: number, updateMediaDto: UpdateMediaDto) {
     return this.prisma.media.update({
       where: { id },

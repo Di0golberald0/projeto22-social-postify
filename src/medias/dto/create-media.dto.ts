@@ -1,15 +1,15 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsNotEmpty, IsString, IsUrl } from "class-validator";
 
 export class CreateMediaDto {
-    @IsString()
-    @IsNotEmpty()
-    title: string;
+  @IsString()
+  @IsNotEmpty()
+  title: string;
 
-    @IsString()
-    @IsNotEmpty()
-    username: string;
-    
-    constructor(params?: Partial<CreateMediaDto>) {
-      if (params) Object.assign(this, params);
-    }
+  @IsString()
+  @IsNotEmpty()
+  username: string;
+
+  constructor(params?: Partial<CreateMediaDto>) {
+    if (params) Object.assign(this, params);
+  }
 }

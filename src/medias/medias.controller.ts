@@ -19,6 +19,7 @@ export class MediasController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
+    // verifica se id é válido
     return this.mediasService.findOne(+id);
   }
 
