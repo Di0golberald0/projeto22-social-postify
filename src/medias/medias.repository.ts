@@ -15,20 +15,25 @@ export class MediasRepository {
   }
 
   findAll() {
-    return this.prisma.media.findMany();
+    return this.prisma.media.findMany()
   }
 
   findOne(id: number) {
     return this.prisma.media.findUnique({
       where: { id }
-    });
+    })
   }
 
   update(id: number, updateMediaDto: UpdateMediaDto) {
-    return `This action updates a #${id} media`;
+    return this.prisma.media.update({
+      where: { id },
+      data: updateMediaDto
+    })
   }
 
   remove(id: number) {
-    return `This action removes a #${id} media`;
+    return this.prisma.media.delete({
+      where: { id }
+    })
   }
 }
