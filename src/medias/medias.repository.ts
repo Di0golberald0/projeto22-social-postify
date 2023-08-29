@@ -24,6 +24,17 @@ export class MediasRepository {
     })
   }
 
+  findByTitleAndUsername(title: string, username: string) {
+    return this.prisma.media.findUnique({
+      where: {
+        title_username: {
+          title,
+          username
+        }
+      }
+    })
+  }
+
   update(id: number, updateMediaDto: UpdateMediaDto) {
     return this.prisma.media.update({
       where: { id },
