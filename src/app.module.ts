@@ -11,5 +11,4 @@ import { PublicationsModule } from './publications/publications.module';
   controllers: [AppController],
   providers: [AppService],
 })
-
 export class AppModule {}
